@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tài Xỉu 3D - Nổ Rồng</title>
+    <style>
+        body { background: #1a1a1a; color: white; text-align: center; font-family: sans-serif; }
+        .dice-container { font-size: 80px; margin: 50px; }
+        .btn { padding: 15px 30px; font-size: 20px; cursor: pointer; background: gold; border: none; border-radius: 10px; }
+        #result { font-size: 30px; margin-top: 20px; color: #ffcc00; }
+        .dragon { color: red; font-weight: bold; font-size: 40px; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <h1>Tài Xỉu 3D - Nổ Rồng</h1>
+    <div class="dice-container" id="dice">🎲🎲🎲</div>
+    <button class="btn" onclick="roll()">LẮC XÚC XẮC</button>
+    <div id="result"></div>
 
+    <script>
+        function roll() {
+            let d1 = Math.floor(Math.random()*6)+1;
+            let d2 = Math.floor(Math.random()*6)+1;
+            let d3 = Math.floor(Math.random()*6)+1;
+            let sum = d1 + d2 + d3;
+            let diceText = d1 + " " + d2 + " " + d3;
+            document.getElementById('dice').innerText = diceText;
+            
+            let res = (sum >= 11) ? "TÀI" : "XỈU";
+            let msg = "Kết quả: " + sum + " - " + res;
+            
+            // Hiệu ứng "Nổ rồng" nếu kết quả đặc biệt (ví dụ tổng bằng 18)
+            if(sum === 18) {
+                msg = "<span class='dragon'>🐲 NỔ RỒNG!!! 18 ĐIỂM! 🐲</span>";
+            }
+            document.getElementById('result').innerHTML = msg;
+        }
+    </script>
+</body>
+</html>
